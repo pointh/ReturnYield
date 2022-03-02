@@ -16,6 +16,7 @@ namespace ReturnYield
                 {
                     if (candidate % i++ == 0)
                     {
+                        Console.WriteLine($"\t\t{candidate}");
                         candidate++;
                         i = 2;
                         continue;
@@ -23,7 +24,12 @@ namespace ReturnYield
 
                 }
                 yield return candidate;
-                candidate++;
+
+                candidate++; // po vrácení z volané funkce
+                if(candidate > 20)
+                {
+                    yield break; // ukonči další generování
+                }
             }
         }
 
@@ -32,11 +38,12 @@ namespace ReturnYield
             foreach(var x in Primes())
             {
                 string s = x.ToString();
-                if(s[s.Length-1] == '1')
+                if(s[s.Length-1] == '9')
                 {
-                        Console.WriteLine(s);
+                    Console.WriteLine(s);
                 }
-            }
+                
+            }          
         }
     }
 }
